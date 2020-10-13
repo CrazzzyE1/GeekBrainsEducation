@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Methods {
     public static void main(String[] args) {
-
+        //Home work 1 is complete!
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите числа а, b, c, d и свое имя через пробел");
         double a = scanner.nextDouble();

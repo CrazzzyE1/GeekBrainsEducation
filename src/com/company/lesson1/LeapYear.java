@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class LeapYear {
 
-    //Home work is complete!
+    //Home work 1 is complete!
 
     public static void main(String[] args) {
         System.out.println("Введите год для проверки:");
