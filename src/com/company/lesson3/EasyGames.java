@@ -23,7 +23,7 @@ public class EasyGames {
         char[] fieldMagic = new char[15];
         Arrays.fill(fieldMagic, '#');
 
-        String superFruit = fruits[(int) (Math.random() * 25)];
+        String superFruit = fruits[(int) (Math.random() * fruits.length)];
         System.out.println("Бро, настало время угадать, что ты за фрукт!");
         Scanner sc = new Scanner(System.in);
         String userFruit;
