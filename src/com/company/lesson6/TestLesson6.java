@@ -2,14 +2,15 @@ package com.company.lesson6;
 
 public class TestLesson6 {
     public static void main(String[] args) {
+
         Dog dog = new Dog();
-        System.out.println(dog.toString());
+        System.out.println(dog);
         dog.run(400);
         dog.swim(8);
         dog.jump(1);
 
         Dog dog2 = new Dog();
-        System.out.println(dog2.toString());
+        System.out.println(dog2);
 
         dog2.run(100);
         dog2.swim(10);
@@ -17,12 +18,12 @@ public class TestLesson6 {
 
 
         Cat cat = new Cat();
-        System.out.println(cat.toString());
+        System.out.println(cat);
         cat.run(150);
         cat.jump(2);
 
         Cat cat2 = new Cat();
-        System.out.println(cat2.toString());
+        System.out.println(cat2);
         cat2.run(50);
         cat2.jump(1);
 
