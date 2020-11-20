@@ -1,6 +1,6 @@
 package company.lesson2;
 
-public class MyArrayDataException extends Exception {
+public class MyArrayDataException extends RuntimeException {
     private int i;
     private int j;
 

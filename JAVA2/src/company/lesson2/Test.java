@@ -16,13 +16,13 @@ public class Test {
 
         try {
             System.out.println("Sum is " + checkArray(myArray));
-        } catch (MyArraySizeException | MyArrayDataException e) {
+        } catch (MyArraySizeException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static int checkArray(String[][] array) throws MyArraySizeException, MyArrayDataException {
+    public static int checkArray(String[][] array){
         if (array.length != 4 || array[0].length != 4) throw new MyArraySizeException();
 
         int sumResult = 0;
