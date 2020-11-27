@@ -1,10 +1,11 @@
 package company.lesson4;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,13 +21,16 @@ public class AuthController {
         if (auth) {
             Parent chat = FXMLLoader.load(getClass().getResource("fxml/chat.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Сетевой чат");
+            stage.setTitle("Chat");
+            stage.getIcons().add(new Image("company/lesson4/icon.png"));
+
             stage.setScene(new Scene(chat));
             stage.setResizable(false);
             stage.show();
             login.getScene().getWindow().hide();
         } else {
-            login.setPromptText("WRONG LOGIN OR PASSWORD");
+            login.clear();
+            login.setPromptText("Wrong login or password");
             password.clear();
         }
     }
@@ -34,10 +38,13 @@ public class AuthController {
     public void reg(ActionEvent actionEvent) throws IOException {
         Parent chat = FXMLLoader.load(getClass().getResource("fxml/registration.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Регистрация");
+        stage.setTitle("Registration");
+        stage.getIcons().add(new Image("company/lesson4/icon.png"));
         stage.setScene(new Scene(chat));
         stage.setResizable(false);
         stage.show();
         login.getScene().getWindow().hide();
     }
+
+
 }

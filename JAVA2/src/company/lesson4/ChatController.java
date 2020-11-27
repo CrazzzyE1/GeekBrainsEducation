@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,14 +21,18 @@ public class ChatController implements Initializable {
     public TextField input;
 
     public void send(ActionEvent actionEvent) {
-        output.appendText(input.getText() + "\n");
-        input.clear();
+        if(!input.getText().isEmpty()){
+            output.appendText(input.getText() + "\n");
+            input.clear();
+        }
+
     }
 
     public void quit(ActionEvent actionEvent) throws IOException {
         Parent chat = FXMLLoader.load(getClass().getResource("fxml/auth.fxml"));
         Stage stage = new Stage();
-        stage.setTitle("Регистрация");
+        stage.setTitle("Welcome to the GeekChat");
+        stage.getIcons().add(new Image("company/lesson4/icon.png"));
         stage.setScene(new Scene(chat));
         stage.setResizable(false);
         stage.show();
