@@ -26,15 +26,15 @@ public class Client implements Closeable {
 
 
     public void write(String msg) {
-        Thread writeThread = new Thread(() -> {
+//        Thread writeThread = new Thread(() -> {
             try {
                 out.write(msg.getBytes(StandardCharsets.UTF_8));
                 out.flush();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        });
-        writeThread.start();
+//        });
+//        writeThread.start();
     }
 
     public void read(TextArea output) throws IOException {
