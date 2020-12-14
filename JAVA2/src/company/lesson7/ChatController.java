@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -20,6 +22,11 @@ public class ChatController implements Initializable {
     public TextArea output;
     public TextField input;
     public Client client;
+    public SplitMenuButton comMenu;
+    public MenuItem m1;
+    public MenuItem m2;
+    public MenuItem m3;
+
 
     public void send(ActionEvent actionEvent) {
         if(!input.getText().isEmpty()){
@@ -30,6 +37,17 @@ public class ChatController implements Initializable {
 
     public void read(TextArea output) throws IOException {
         client.read(output);
+    }
+
+    public void change(){
+        input.appendText(m1.getText());
+    }
+    public void change2(){
+        input.appendText(m2.getText());
+    }
+
+    public void change3() {
+        input.appendText(m3.getText());
     }
 
 
@@ -53,8 +71,10 @@ public class ChatController implements Initializable {
         FileHistoryService.getInstance().load().forEach(historyLine -> {
             output.appendText(historyLine + "\n");
         });
+
         try {
             client = new Client();
+            client.write("/loginuser " + MockAuthServiceImpl.getInstance().getName());
             read(output);
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="company.lesson7.ChatController">
     <MenuBar style="-fx-background-color: silverlight;" VBox.vgrow="NEVER">
@@ -34,5 +42,13 @@
                   <Cursor fx:constant="HAND" />
               </cursor>
           </Button>
+      <ButtonBar layoutX="208.0" layoutY="276.0" prefHeight="40.0" prefWidth="200.0" />
+      <SplitMenuButton id="comMenu" layoutX="671.0" layoutY="486.0" mnemonicParsing="false" text="/COMMANDS">
+        <items>
+          <MenuItem fx:id="m1" onAction="#change" mnemonicParsing="false" text="/changename" />
+          <MenuItem fx:id="m2" onAction="#change2" mnemonicParsing="false" text="/private" />
+            <MenuItem fx:id="m3" onAction="#change3" mnemonicParsing="false" text="/online" />
+        </items>
+      </SplitMenuButton>
     </AnchorPane>
 </VBox>

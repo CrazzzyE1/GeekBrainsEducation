@@ -10,6 +10,10 @@ public class EchoServer {
     private boolean running;
     private ConcurrentLinkedDeque<ClientHandler> clients = new ConcurrentLinkedDeque<>();
 
+    public ConcurrentLinkedDeque<ClientHandler> getClients() {
+        return clients;
+    }
+
     public EchoServer() {
         running = true;
         try(ServerSocket server = new ServerSocket(8189)) {

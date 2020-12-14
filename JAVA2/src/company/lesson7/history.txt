@@ -1,6 +1,15 @@
-user#5: 12
-user#6: 234
-user#6: mjfghdmjh
-user#6: df dsfs
-user#4: sdfdf sdf 
-Client user#4 leave!
+--- ASDFG --- Joined to Chat! 
+--- ZXCVB --- Joined to Chat! 
+ZXCVB: ghnhxdhfhds
+ZXCVB: fdgdfg
+ZXCVB: dfgfg
+*** ZXCVB - change name to POIUYT*** 
+Client POIUYT leave!
+PRIVAT MESSAGE!!! FROM ASDFG:  totototototot
+Client user leave!
+Client QWERTY leave!
+*** ASDFG - change name to GAMEOVER*** 
+user leave!
+NOW ONLINE: 
+QWERTY
+ASDFG

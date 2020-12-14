@@ -10,12 +10,13 @@ import java.nio.charset.StandardCharsets;
 public class ClientHandler implements Runnable, Closeable {
 
     private static int cnt = 0;
-    private final String userName;
+    private String userName;
     private final DataInputStream is;
     private final DataOutputStream os;
     private boolean running;
-    private final byte [] buffer;
+    private final byte[] buffer;
     private final EchoServer server;
+    private CommandController commandController;
 
     public ClientHandler(Socket socket, EchoServer server) throws IOException {
         is = new DataInputStream(socket.getInputStream());
@@ -25,6 +26,7 @@ public class ClientHandler implements Runnable, Closeable {
         running = true;
         buffer = new byte[256];
         this.server = server;
+        commandController = new CommandController();
     }
 
     public boolean isRunning() {
@@ -49,6 +51,14 @@ public class ClientHandler implements Runnable, Closeable {
                 if (messageFromClient.replaceAll("[\n\r]", "").isEmpty()) {
                     continue;
                 }
+                if (messageFromClient.startsWith("/")) {
+                    if (!messageFromClient.startsWith("/private")) {
+                        server.broadCast(commandController.giveAnswer(messageFromClient, this, server));
+                    } else {
+                        commandController.giveAnswer(messageFromClient, this, server);
+                    }
+                    continue;
+                }
                 System.out.println("Received from " + userName + ": " + messageFromClient);
                 server.broadCast(userName + ": " + messageFromClient + "\n\r");
             } catch (IOException e) {
@@ -56,6 +66,14 @@ public class ClientHandler implements Runnable, Closeable {
                 break;
             }
         }
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void changeName(String userName) {
+        this.userName = userName;
     }
 
     public void sendMessage(String message) throws IOException {

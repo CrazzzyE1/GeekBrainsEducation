@@ -24,6 +24,7 @@ public class RegistrationController {
             login.setPromptText("Empty Login or Password");
             password.clear();
         } else if (!reg) {
+            MockAuthServiceImpl.getInstance().setName(login.getText());
             MockAuthServiceImpl.getInstance().addUser(login.getText(), password.getText());
             Parent chat = FXMLLoader.load(getClass().getResource("fxml/chat.fxml"));
             Stage stage = new Stage();

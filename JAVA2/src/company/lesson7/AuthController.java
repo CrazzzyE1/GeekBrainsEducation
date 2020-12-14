@@ -19,6 +19,7 @@ public class AuthController {
         boolean auth = MockAuthServiceImpl.getInstance()
                 .auth(login.getText(), password.getText());
         if (auth) {
+            MockAuthServiceImpl.getInstance().setName(login.getText());
             Parent chat = FXMLLoader.load(getClass().getResource("fxml/chat.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Chat");
