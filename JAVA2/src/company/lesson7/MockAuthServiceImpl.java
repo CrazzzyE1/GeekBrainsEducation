@@ -7,6 +7,15 @@ public class MockAuthServiceImpl implements AuthService {
 
     private static MockAuthServiceImpl instance;
     private HashMap<String, String> userDao;
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     private MockAuthServiceImpl() {
         userDao = new HashMap<>();
@@ -29,4 +38,5 @@ public class MockAuthServiceImpl implements AuthService {
     public boolean auth(String name, String pass) {
         return userDao.get(name) != null;
     }
+
 }
