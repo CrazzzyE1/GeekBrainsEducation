@@ -2,6 +2,7 @@ package company.lesson7;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -9,23 +10,30 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class RegistrationController {
+public class RegistrationController implements Initializable {
 
+    Client client;
     public TextField login;
     public TextField password;
+    public TextField nickName;
 
     public void enter(ActionEvent actionEvent) throws IOException {
-        boolean reg = MockAuthServiceImpl.getInstance()
-                .auth(login.getText(), password.getText());
 
-        if (login.getText().trim().isEmpty() && password.getText().trim().isEmpty()) {
+        if(!login.getText().trim().isEmpty() && !password.getText().trim().isEmpty() && !nickName.getText().trim().isEmpty()){
+            client.write("/auth " + login.getText() + " " + password.getText());
+        } else {
             login.clear();
             login.setPromptText("Empty Login or Password");
             password.clear();
-        } else if (!reg) {
-            MockAuthServiceImpl.getInstance().setName(login.getText());
-            MockAuthServiceImpl.getInstance().addUser(login.getText(), password.getText());
+            return;
+        }
+
+        if (!client.isAuthSuccess()) {
+            client.write("/reg " + login.getText() + "*" + password.getText() + "*" + nickName.getText());
+
             Parent chat = FXMLLoader.load(getClass().getResource("fxml/chat.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Chat");
@@ -38,6 +46,15 @@ public class RegistrationController {
             login.clear();
             login.setPromptText("This name already exists");
             password.clear();
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            client = Client.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,2 +1,4 @@
 # Project exclude paths
 /out/
+/JAVA2/src/company/lesson7/.idea/
+/JAVA3/src/SQLiteDatabaseBrowserPortable/

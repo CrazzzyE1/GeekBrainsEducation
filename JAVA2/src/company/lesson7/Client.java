@@ -11,15 +11,23 @@ import java.nio.charset.StandardCharsets;
 
 public class Client implements Closeable {
 
-    Socket socket;
-    DataInputStream in;
-    DataOutputStream out;
-    byte[] buffer;
-    int bytesRead;
-    boolean flag;
+    private static Client instance;
 
+    private Socket socket;
+    private DataInputStream in;
+    private DataOutputStream out;
+    private byte[] buffer;
+    private int bytesRead;
+    private boolean flag;
 
-    public Client() throws IOException {
+    public static Client getInstance() throws IOException {
+        if(instance == null) {
+            instance = new Client();
+        }
+        return instance;
+    }
+
+    private Client() throws IOException {
         this.socket = new Socket("localhost", 8189);
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
@@ -27,7 +35,6 @@ public class Client implements Closeable {
         this.flag = true;
 
     }
-
 
     public void write(String msg) {
 
@@ -38,6 +45,12 @@ public class Client implements Closeable {
                 e.printStackTrace();
             }
 
+    }
+
+    public boolean isAuthSuccess() throws IOException {
+        bytesRead = in.read(buffer);
+        String msg = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
+        return msg.equals("/success");
     }
 
     public void read(TextArea output) throws IOException {
