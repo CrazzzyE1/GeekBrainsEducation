@@ -3,6 +3,7 @@ package company.lesson7;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class EchoServer {
@@ -32,14 +33,6 @@ public class EchoServer {
         }
     }
 
-    public boolean isRunning() {
-        return running;
-    }
-
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
-
     public void broadCast(String msg) throws IOException {
         for (ClientHandler client : clients) {
             client.sendMessage(msg);
@@ -50,7 +43,7 @@ public class EchoServer {
         clients.remove(client);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         new EchoServer();
     }
 

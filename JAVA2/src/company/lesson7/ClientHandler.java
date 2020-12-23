@@ -6,11 +6,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 
 public class ClientHandler implements Runnable, Closeable {
-
+    private final DbController dbController;
     private static int cnt = 0;
     private String userName;
+    private String login;
     private final DataInputStream is;
     private final DataOutputStream os;
     private boolean running;
@@ -18,23 +20,20 @@ public class ClientHandler implements Runnable, Closeable {
     private final EchoServer server;
     private CommandController commandController;
 
-    public ClientHandler(Socket socket, EchoServer server) throws IOException {
+    public ClientHandler(Socket socket, EchoServer server) throws IOException, SQLException, ClassNotFoundException {
+        this.dbController = new DbController();
         is = new DataInputStream(socket.getInputStream());
         os = new DataOutputStream(socket.getOutputStream());
         cnt++;
-        userName = "user#" + cnt;
+        userName = "not_authorized#" + cnt;
         running = true;
         buffer = new byte[256];
         this.server = server;
-        commandController = new CommandController();
+        commandController = new CommandController(dbController);
     }
 
-    public boolean isRunning() {
-        return running;
-    }
-
-    public void setRunning(boolean running) {
-        this.running = running;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class ClientHandler implements Runnable, Closeable {
                 }
                 System.out.println("Received from " + userName + ": " + messageFromClient);
                 server.broadCast(userName + ": " + messageFromClient + "\n\r");
-            } catch (IOException e) {
+            } catch (IOException | SQLException e) {
                 System.err.println("Exception while read");
                 break;
             }

@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,7 +21,6 @@ public class ChatController implements Initializable {
     public TextArea output;
     public TextField input;
     public Client client;
-    public SplitMenuButton comMenu;
     public MenuItem m1;
     public MenuItem m2;
     public MenuItem m3;
@@ -73,8 +71,7 @@ public class ChatController implements Initializable {
         });
 
         try {
-            client = new Client();
-            client.write("/loginuser " + MockAuthServiceImpl.getInstance().getName());
+            client = Client.getInstance();
             read(output);
         } catch (IOException e) {
             e.printStackTrace();
