@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ChatController implements Initializable {
@@ -27,7 +28,7 @@ public class ChatController implements Initializable {
 
 
     public void send(ActionEvent actionEvent) {
-        if(!input.getText().isEmpty()){
+        if (!input.getText().isEmpty()) {
             client.write(input.getText());
             input.clear();
         }
@@ -37,10 +38,11 @@ public class ChatController implements Initializable {
         client.read(output);
     }
 
-    public void change(){
+    public void change() {
         input.appendText(m1.getText());
     }
-    public void change2(){
+
+    public void change2() {
         input.appendText(m2.getText());
     }
 
@@ -66,9 +68,13 @@ public class ChatController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        FileHistoryService.getInstance().load().forEach(historyLine -> {
-            output.appendText(historyLine + "\n");
-        });
+
+        List<String> history = FileHistoryService.getInstance().load();
+        int count = history.size() - 100;
+        if (count < 0) count = 0;
+        for (int i = count; i < 100 + count && i < history.size(); i++) {
+            output.appendText(history.get(i) + "\n");
+        }
 
         try {
             client = Client.getInstance();

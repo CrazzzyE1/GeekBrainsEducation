@@ -25,6 +25,7 @@ public class FileHistoryService implements HistoryService {
     @Override
     public void save(List<String> chat) {
         try {
+            Files.delete(Paths.get(path));
             Files.write(Paths.get(path), chat, StandardOpenOption.CREATE);
         } catch (Exception e) {
             e.printStackTrace();
