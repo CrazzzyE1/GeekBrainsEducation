@@ -1,0 +1,129 @@
+goo: sdfdsf
+goo: sdf
+goo: sdf
+--- goo --- Joined to Chat! 
+hoo: dfs
+hoo: sdf
+goo: dsfdf
+--- goo --- Joined to Chat! 
+NOW ONLINE: 
+hoo
+goo
+
+goo: dfdf
+goo: dfdfs
+hoo: dsfsd
+hoo: sdfsf
+--- nick --- Joined to Chat! 
+hoo: sadsd
+nick: sasdasd
+nick: asdasd
+hoo: adasd
+--- goo --- Joined to Chat! 
+goo: sdfdsf
+nick: sdfsdf
+nick: sdfsdfs
+nick: sdfsdf
+goo: sfsfsdf
+NOW ONLINE: 
+nick
+
+nick: sdfdsf
+nick: sf
+nick: sdf
+nick: sdf
+nick: sdf
+nick: s
+nick: f
+nick: sd
+nick: fsd
+nick: f
+nick: sdf
+--- hoo --- Joined to Chat! 
+--- goo --- Joined to Chat! 
+goo: sdfsdf
+hoo: sdfdsf
+Client goo leave!
+--- nick --- Joined to Chat! 
+nick: asdsds
+hoo: asdsad
+NOW ONLINE: 
+hoo
+nick
+
+Client nick leave!
+hoo: asdasd
+hoo: asdasdas
+--- goo --- Joined to Chat! 
+goo: sdfsd
+hoo: sdfsdf
+hoo: sdf
+hoo: sdf
+hoo: sdf
+hoo: sd
+hoo: f
+hoo: s
+hoo: f
+goo: sdf
+goo: sfsd
+goo: f
+goo: s
+goo: fs
+goo: fd
+goo: sdf
+/NOsuccess/success--- NICOCOCO --- Joined to Chat! 
+NICOCOCO: dfsf
+NICOCOCO: dsfdf
+NICOCOCO: dsfs
+NICOCOCO: df
+NICOCOCO: ds
+NICOCOCO: fsd
+NICOCOCO: f
+NICOCOCO: ds
+NICOCOCO: f
+NICOCOCO: sd
+NICOCOCO: fds
+NICOCOCO: f
+--- hoo --- Joined to Chat! 
+hoo: sdfdsf
+hoo: sdf
+hoo: sdf
+hoo: d
+hoo: sf
+hoo: sd
+hoo: f
+hoo: sd
+hoo: f
+hoo: sd
+hoo: f/online
+NOW ONLINE: 
+hoo
+--- nick --- Joined to Chat! 
+JOJOOJOOJO: sdfdf
+JOJOOJOOJO: sdfsdf
+JOJOOJOOJO: sdfds
+PRIVAT MESSAGE!!! FROM JOJOOJOOJO:  HELLLLLLLOOO
+PRIVAT MESSAGE!!! FROM nick:  9999999999999999999
+hoo: sdfsfd
+JOJOOJOOJO: sdfd
+nick: sdfdsf
+NOW ONLINE: 
+JOJOOJOOJO
+hoo
+nick
+
+Client JOJOOJOOJO leave!
+NOW ONLINE: 
+hoo
+nick
+
+--- nick2 --- Joined to Chat! 
+NOW ONLINE: 
+hoo
+nick
+nick2
+
+nick: dsfdf
+hoo: sdfdsf
+Client hoo leave!
+Client nick2 leave!

@@ -16,6 +16,7 @@ public class CommandController {
         String[] tmp = clientMessage.split(" ");
         String oldName = clientHandler.getUserName();
         String command = tmp[0];
+        System.out.println("Команда в команд контроллере: " + command);
         clientMessage = clientMessage.substring(command.length()).trim();
         switch (command) {
 
@@ -23,6 +24,7 @@ public class CommandController {
                 if (db.isAuthSuccess(tmp[1].trim(), tmp[2].trim())) {
                     clientHandler.setLogin(tmp[1].trim());
                     clientHandler.changeName(db.getNickNameFromDb(tmp[1]));
+                    server.addUser(clientHandler);
                     clientHandler.sendMessage("/success");
                     clientMessage = "--- " + clientHandler.getUserName() + " --- Joined to Chat! \n";
                 } else {
@@ -55,6 +57,12 @@ public class CommandController {
                         client.sendMessage("PRIVAT MESSAGE!!! FROM " + clientHandler.getUserName() + ": " + clientMessage + "\n");
                     }
                 }
+                break;
+            }
+            case "/quit": {
+                clientHandler.sendMessage("quit - accept");
+                server.kickMe(clientHandler);
+                server.broadCast("Client " + clientHandler.getUserName() + " leave!" + "\n\r");
                 break;
             }
             case "/online": {

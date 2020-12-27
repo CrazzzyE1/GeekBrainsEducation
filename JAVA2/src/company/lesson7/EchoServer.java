@@ -24,22 +24,27 @@ public class EchoServer {
                 Socket socket = server.accept();
                 System.out.println("Client accepted!");
                 ClientHandler handler = new ClientHandler(socket, this);
-                clients.add(handler);
                 new Thread(handler).start();
-                System.out.println("Client info: " + socket.getInetAddress());
             }
         } catch (Exception e) {
             System.out.println("Server crashed");
         }
     }
 
+    public void addUser(ClientHandler handler){
+        clients.add(handler);
+    }
+
     public void broadCast(String msg) throws IOException {
+        if (msg.equals("")) return;
+        System.out.println("Я сервер и я реально броткастю: " + msg);
         for (ClientHandler client : clients) {
             client.sendMessage(msg);
         }
     }
 
     public void kickMe(ClientHandler client) {
+        System.out.println("Я сервер - я кикнул: " + client.getUserName());
         clients.remove(client);
     }
 

@@ -20,11 +20,17 @@ public class AuthController implements Initializable {
     Client client;
 
     public void enter(ActionEvent actionEvent) throws IOException {
+
         if(!login.getText().trim().isEmpty() && !password.getText().trim().isEmpty()){
+            try {
+                client = Client.getInstance();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             client.write("/auth " + login.getText() + " " + password.getText());
         } else {
             login.clear();
-            login.setPromptText("Wrong login or password");
+            login.setPromptText("Login or password is Empty");
             password.clear();
             return;
         }
@@ -58,10 +64,10 @@ public class AuthController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            client = Client.getInstance();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            client = Client.getInstance();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

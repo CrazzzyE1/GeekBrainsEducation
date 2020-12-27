@@ -44,21 +44,27 @@ public class ClientHandler implements Runnable, Closeable {
                 if (bytesRead == -1) {
                     server.kickMe(this);
                     server.broadCast("Client " + userName + " leave!" + "\n\r");
+                    System.out.println("SERVER: CLIENT LEAVE");
                     break;
                 }
                 String messageFromClient = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
+                System.out.println("Сообщение на сервер на входе: " + messageFromClient );
+                System.out.println(userName);
                 if (messageFromClient.replaceAll("[\n\r]", "").isEmpty()) {
                     continue;
                 }
                 if (messageFromClient.startsWith("/")) {
                     if (!messageFromClient.startsWith("/private")) {
+                        System.out.println("SERVER: КомандКонтроллер пишет ответ БРОДКАСТ");
                         server.broadCast(commandController.giveAnswer(messageFromClient, this, server));
                     } else {
+                        System.out.println("SERVER: КомандКонтроллер пишет ответ Киленту если /privat");
                         commandController.giveAnswer(messageFromClient, this, server);
                     }
                     continue;
                 }
                 System.out.println("Received from " + userName + ": " + messageFromClient);
+                System.out.println("SERVER: сообщение от клиента передано на БРОДКАСТ");
                 server.broadCast(userName + ": " + messageFromClient + "\n\r");
             } catch (IOException | SQLException e) {
                 System.err.println("Exception while read");
@@ -76,6 +82,7 @@ public class ClientHandler implements Runnable, Closeable {
     }
 
     public void sendMessage(String message) throws IOException {
+        System.out.println("Я сервер и я отправляю: " + message);
         os.write(message.getBytes(StandardCharsets.UTF_8));
         os.flush();
     }

@@ -34,9 +34,9 @@ public class ChatController implements Initializable {
         }
     }
 
-    public void read(TextArea output) throws IOException {
-        client.read(output);
-    }
+//    public void read(TextArea output) throws IOException {
+//        client.read(output);
+//    }
 
     public void change() {
         input.appendText(m1.getText());
@@ -60,14 +60,16 @@ public class ChatController implements Initializable {
         stage.setScene(new Scene(chat));
         stage.setResizable(false);
         stage.show();
-        client.close();
         input.getScene().getWindow().hide();
+        client.write("/quit");
+        client.readThreadStop();
         FileHistoryService.getInstance().save(
                 Arrays.asList(output.getText().split("\n").clone()));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Init ChatController");
 
         List<String> history = FileHistoryService.getInstance().load();
         int count = history.size() - 100;
@@ -78,7 +80,9 @@ public class ChatController implements Initializable {
 
         try {
             client = Client.getInstance();
-            read(output);
+//            read(output);
+            client.read(output);
+            client.readThreadStart();
         } catch (IOException e) {
             e.printStackTrace();
         }
