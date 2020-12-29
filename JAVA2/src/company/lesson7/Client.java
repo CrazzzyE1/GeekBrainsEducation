@@ -79,6 +79,8 @@ public class Client implements Closeable {
                     output.appendText(msg);
                 } catch (IOException e) {
                     System.out.println("User leave!");
+                    output.appendText("Server crashed. Please Quit and Reconnect");
+                    break;
                 }
             }
         });

@@ -24,10 +24,12 @@ public class AuthController implements Initializable {
         if(!login.getText().trim().isEmpty() && !password.getText().trim().isEmpty()){
             try {
                 client = Client.getInstance();
+                client.write("/auth " + login.getText() + " " + password.getText());
             } catch (IOException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("Server not found");
+                return;
             }
-            client.write("/auth " + login.getText() + " " + password.getText());
         } else {
             login.clear();
             login.setPromptText("Login or password is Empty");

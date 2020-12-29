@@ -1,40 +1,3 @@
-goo: sdfdsf
-goo: sdf
-goo: sdf
---- goo --- Joined to Chat! 
-hoo: dfs
-hoo: sdf
-goo: dsfdf
---- goo --- Joined to Chat! 
-NOW ONLINE: 
-hoo
-goo
-
-goo: dfdf
-goo: dfdfs
-hoo: dsfsd
-hoo: sdfsf
---- nick --- Joined to Chat! 
-hoo: sadsd
-nick: sasdasd
-nick: asdasd
-hoo: adasd
---- goo --- Joined to Chat! 
-goo: sdfdsf
-nick: sdfsdf
-nick: sdfsdfs
-nick: sdfsdf
-goo: sfsfsdf
-NOW ONLINE: 
-nick
-
-nick: sdfdsf
-nick: sf
-nick: sdf
-nick: sdf
-nick: sdf
-nick: s
-nick: f
 nick: sd
 nick: fsd
 nick: f
@@ -127,3 +90,20 @@ nick: dsfdf
 hoo: sdfdsf
 Client hoo leave!
 Client nick2 leave!
+--- hoo --- Joined to Chat! 
+hoo: asdsad
+hoo: asdsad
+hoo: asdsa
+hoo: das
+hoo: dsad
+hoo: asd
+Server crashed. Please Quit and Reconnect
+--- hoo --- Joined to Chat! 
+hoo: sadsad
+hoo: adsad
+hoo: asd
+hoo: asd
+hoo: asd
+hoo: asd
+hoo: asd
+Server crashed. Please Quit and Reconnect
