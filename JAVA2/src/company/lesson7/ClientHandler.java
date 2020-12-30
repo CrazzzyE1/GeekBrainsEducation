@@ -15,7 +15,6 @@ public class ClientHandler implements Runnable, Closeable {
     private String login;
     private final DataInputStream is;
     private final DataOutputStream os;
-    private boolean running;
     private final byte[] buffer;
     private final EchoServer server;
     private CommandController commandController;
@@ -26,7 +25,6 @@ public class ClientHandler implements Runnable, Closeable {
         os = new DataOutputStream(socket.getOutputStream());
         cnt++;
         userName = "not_authorized#" + cnt;
-        running = true;
         buffer = new byte[256];
         this.server = server;
         commandController = new CommandController(dbController);
@@ -38,7 +36,7 @@ public class ClientHandler implements Runnable, Closeable {
 
     @Override
     public void run() {
-        while (running) {
+        while (true) {
             try {
                 int bytesRead = is.read(buffer);
                 if (bytesRead == -1) {
@@ -48,23 +46,18 @@ public class ClientHandler implements Runnable, Closeable {
                     break;
                 }
                 String messageFromClient = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
-                System.out.println("Сообщение на сервер на входе: " + messageFromClient );
-                System.out.println(userName);
                 if (messageFromClient.replaceAll("[\n\r]", "").isEmpty()) {
                     continue;
                 }
                 if (messageFromClient.startsWith("/")) {
                     if (!messageFromClient.startsWith("/private")) {
-                        System.out.println("SERVER: КомандКонтроллер пишет ответ БРОДКАСТ");
                         server.broadCast(commandController.giveAnswer(messageFromClient, this, server));
                     } else {
-                        System.out.println("SERVER: КомандКонтроллер пишет ответ Киленту если /privat");
                         commandController.giveAnswer(messageFromClient, this, server);
                     }
                     continue;
                 }
                 System.out.println("Received from " + userName + ": " + messageFromClient);
-                System.out.println("SERVER: сообщение от клиента передано на БРОДКАСТ");
                 server.broadCast(userName + ": " + messageFromClient + "\n\r");
             } catch (IOException | SQLException e) {
                 System.err.println("Exception while read");
@@ -82,7 +75,6 @@ public class ClientHandler implements Runnable, Closeable {
     }
 
     public void sendMessage(String message) throws IOException {
-        System.out.println("Я сервер и я отправляю: " + message);
         os.write(message.getBytes(StandardCharsets.UTF_8));
         os.flush();
     }
