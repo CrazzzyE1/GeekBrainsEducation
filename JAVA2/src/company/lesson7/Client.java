@@ -49,21 +49,16 @@ public class Client implements Closeable {
     }
 
     public boolean isAuthSuccess() throws IOException {
-        System.out.println("Внутри авторизации на клиенте");
         bytesRead = in.read(buffer);
-        System.out.println("Внутри авторизации на клиенте");
         String msg = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
-        System.out.println("Ответ от сервера при авторизации: " + msg);
         return msg.equals("/success");
     }
 
     public void readThreadStop(){
         flag = false;
-        System.out.println("TreadStop Flag = false");
     }
     public void readThreadStart(){
         flag = true;
-        System.out.println("ThreadStart");
         readThread.start();
     }
 
@@ -71,11 +66,9 @@ public class Client implements Closeable {
         System.out.println(flag);
         readThread = new Thread(() -> {
             while (flag) {
-                System.out.println("Я есть поток чтения");
                 try {
                     bytesRead = in.read(buffer);
                     String msg = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
-                    System.out.println("Поток на клиенте вход сообщение: " + msg);
                     output.appendText(msg);
                 } catch (IOException e) {
                     System.out.println("User leave!");

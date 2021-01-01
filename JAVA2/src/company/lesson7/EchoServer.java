@@ -5,6 +5,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class EchoServer {
 
@@ -17,6 +20,7 @@ public class EchoServer {
 
     public EchoServer() {
         running = true;
+        ExecutorService executorService = Executors.newCachedThreadPool();
         try(ServerSocket server = new ServerSocket(8189)) {
             System.out.println("Server started!");
             while (running) {
@@ -24,7 +28,7 @@ public class EchoServer {
                 Socket socket = server.accept();
                 System.out.println("Client accepted!");
                 ClientHandler handler = new ClientHandler(socket, this);
-                new Thread(handler).start();
+                executorService.submit(handler);
             }
         } catch (Exception e) {
             System.out.println("Server crashed");
@@ -37,14 +41,12 @@ public class EchoServer {
 
     public void broadCast(String msg) throws IOException {
         if (msg.equals("")) return;
-        System.out.println("Я сервер и я реально броткастю: " + msg);
         for (ClientHandler client : clients) {
             client.sendMessage(msg);
         }
     }
 
     public void kickMe(ClientHandler client) {
-        System.out.println("Я сервер - я кикнул: " + client.getUserName());
         clients.remove(client);
     }
 
